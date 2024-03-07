@@ -27,7 +27,7 @@ To run it, use the following command from the project root:
 
 Where `PATH_TO_FILE` is the path to the file to serve. This is a mandatory parameter, and the shell script will exit 
 with an error if it is not provided. If you do not have a test file, look into the section below as you can easily 
-generate some.
+generate some. This file is assumed to only contain ASCII characters represented by a single byte.
 
 The application will run on port 8000.
 - OpenAPI documentation of all endpoints (a single one!): http://localhost:8000/docs
