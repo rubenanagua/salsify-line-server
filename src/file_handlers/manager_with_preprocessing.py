@@ -23,13 +23,19 @@ class FileManagerWithPreProcessing(FileManager):
         This is an expensive operation as it requires reading the entire file; as such, it should occur only once
         :return: list representing the number of bytes in a file before the n-th line begins
         """
-        with open(self.path, "r") as f:
-            bytes_per_line = [len(line) for line in f]
+        self.bytes_before_line = []
 
-        if bytes_per_line:  # if the file is not empty
-            self.bytes_before_line = [0] + [sum(bytes_per_line[:i]) for i in range(1, len(bytes_per_line))]
-        else:
-            self.bytes_before_line = []
+        with open(self.path, "r") as f:
+            # First line
+            line = f.readline()
+            self.bytes_before_line = [0]
+            # Subsequent lines
+            while line != "":
+                self.bytes_before_line.append(self.bytes_before_line[-1] + len(line))
+                line = f.readline()
+
+        self.bytes_before_line.pop()  # remove last element
+
         return self.bytes_before_line
 
     async def get_line(self, line_index: int) -> str:
