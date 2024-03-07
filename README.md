@@ -47,8 +47,8 @@ Due to the pre-processing step, and the fact that list lookups by index are of l
 are handled instantly. The index of the requested line is irrelevant in this regard, as it takes the same time to
 retrieve the first line (index 0) or the millionth line.
 
-As such, a more interesting calculation is how long the pre-processing step occurs as the size of the served file
-varies:
+As such, a more interesting calculation is checking how long the pre-processing step takes as the size of the served 
+file varies:
 
 | File size  | Time    |
 |------------|---------|
